@@ -81,7 +81,7 @@ export default function Home() {
         <div className="nav-pad" style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 64, padding: '0 32px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <div style={{ width: 36, height: 36, borderRadius: 10, background: C.primary, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>🎓</div>
-            <span style={{ fontSize: 20, fontWeight: 800, color: C.light }}>CampusBazaar</span>
+            <span style={{ fontSize: 20, fontWeight: 800, color: C.light }}>CampusJugaad</span>
           </div>
           <div className="hide-mobile" style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
             {['Home', 'Browse', 'Borrow', 'Requests'].map(n => (
@@ -310,7 +310,7 @@ export default function Home() {
         <p style={{ color: C.muted, fontSize: 16, marginBottom: 32 }}>Post for free and reach thousands of students across multiple colleges.</p>
         <button onClick={() => token ? navigate('/create') : navigate('/register')} className="hov-btn"
           style={{ background: C.primary, color: C.bg, border: 'none', borderRadius: 16, padding: '16px 40px', fontFamily: 'Sora,sans-serif', fontWeight: 700, cursor: 'pointer', fontSize: 16 }}>
-          {token ? 'Post a Listing — Free' : 'Join CampusBazaar — Free'}
+          {token ? 'Post a Listing — Free' : 'Join CampusJugaad — Free'}
         </button>
       </div>
 
@@ -318,7 +318,7 @@ export default function Home() {
       <footer style={{ background: '#140a02', padding: '40px 32px', borderTop: `1px solid ${C.border}` }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 24 }}>
           <div>
-            <div style={{ fontSize: 20, fontWeight: 800, color: C.light, marginBottom: 8 }}>🎓 CampusBazaar</div>
+            <div style={{ fontSize: 20, fontWeight: 800, color: C.light, marginBottom: 8 }}>🎓 CampusJugaad</div>
             <p style={{ color: C.muted, fontSize: 14, maxWidth: 280, lineHeight: 1.6 }}>The exclusive marketplace for verified college students. Zero commission. Pure community.</p>
           </div>
           <div style={{ display: 'flex', gap: 48, flexWrap: 'wrap' }}>
@@ -334,7 +334,7 @@ export default function Home() {
           </div>
         </div>
         <div style={{ maxWidth: 1200, margin: '32px auto 0', paddingTop: 24, borderTop: `1px solid ${C.border}`, textAlign: 'center', color: C.muted, fontSize: 13 }}>
-          © 2026 CampusBazaar. Built for students, by students.
+          © 2026 CampusJugaad. Built for students, by students.
         </div>
       </footer>
     </div>
