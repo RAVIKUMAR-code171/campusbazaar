@@ -18,6 +18,10 @@ mongoose.connect(process.env.MONGO_URI)
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/listings', require('./routes/listings'));
+app.use('/api/requests', require('./routes/requests'));
+app.use('/api/upload', require('./routes/upload'));
+app.use('/api/reviews', require('./routes/reviews'));
+app.use('/api/wishlist', require('./routes/wishlist'));
 
 app.get('/', (req, res) => {
   res.send('CampusBazaar Server is Running!');

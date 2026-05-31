@@ -85,7 +85,10 @@ export default function Home() {
           </div>
           <div className="hide-mobile" style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
             {['Home', 'Browse', 'Borrow', 'Requests'].map(n => (
-              <span key={n} onClick={() => n === 'Browse' ? document.getElementById('listings').scrollIntoView({ behavior: 'smooth' }) : null}
+              <span key={n} onClick={() => {
+                 if (n === 'Browse') document.getElementById('listings').scrollIntoView({ behavior: 'smooth' })
+                 if (n === 'Requests') navigate('/requests')
+              }}i din
                 style={{ padding: '8px 16px', borderRadius: 999, fontSize: 14, fontWeight: 500, color: C.muted, cursor: 'pointer' }}
                 onMouseEnter={e => e.target.style.color = C.light} onMouseLeave={e => e.target.style.color = C.muted}>{n}</span>
             ))}
@@ -269,8 +272,12 @@ export default function Home() {
             {filtered.map(item => (
               <div key={item._id} className="hov-card" onClick={() => navigate(`/listing/${item._id}`)}
                 style={{ background: C.card, borderRadius: 20, border: `1px solid ${C.border}`, overflow: 'hidden', cursor: 'pointer', transition: 'transform 0.2s, box-shadow 0.2s' }}>
-                <div style={{ background: item.type === 'rent' ? '#2d1a0a' : '#1a1535', height: 130, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 52, position: 'relative' }}>
-                  {categoryIcons[item.category] || '📦'}
+                <div style={{ background: item.type === 'rent' ? '#2d1a0a' : '#1a1535', height: 130, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 52, position: 'relative', overflow: 'hidden' }}>
+                 {item.image ? (
+                <img src={item.image} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }} />
+                ) : (
+                 categoryIcons[item.category] || '📦'
+                )}
                   <span style={{ position: 'absolute', top: 10, left: 10, background: item.type === 'rent' ? 'rgba(217,119,6,0.2)' : 'rgba(109,40,217,0.2)', color: item.type === 'rent' ? C.primary : '#a78bfa', borderRadius: 999, padding: '3px 10px', fontSize: 11, fontWeight: 700, border: `1px solid ${item.type === 'rent' ? 'rgba(217,119,6,0.3)' : 'rgba(109,40,217,0.3)'}` }}>
                     {item.type === 'rent' ? '🔑 BORROW' : '🛒 BUY'}
                   </span>

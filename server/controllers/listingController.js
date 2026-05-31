@@ -43,7 +43,7 @@ exports.getListing = async (req, res) => {
 // Create listing
 exports.createListing = async (req, res) => {
   try {
-    const { title, description, price, type, category, condition, college } = req.body;
+    const { title, description, price, type, category, condition, college, image } = req.body;
 
     const listing = new Listing({
       title,
@@ -53,6 +53,7 @@ exports.createListing = async (req, res) => {
       category,
       condition,
       college,
+      image,
       seller: req.user.id
     });
 

@@ -5,6 +5,8 @@ import Register from './pages/Register'
 import CreateListing from './pages/CreateListing'
 import ListingDetail from './pages/ListingDetail'
 import MyListings from './pages/MyListings'
+import Requests from './pages/Requests'
+import Wishlist from './pages/Wishlist'
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route path="/create" element={<CreateListing />} />
         <Route path="/listing/:id" element={<ListingDetail />} />
         <Route path="/my-listings" element={<MyListings />} />
+        <Route path="/requests" element={<Requests />} />
+        <Route path="/wishlist" element={<Wishlist />} />
       </Routes>
     </BrowserRouter>
   )

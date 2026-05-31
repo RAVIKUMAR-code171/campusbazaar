@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom'
 
 export default function CreateListing() {
   const [form, setForm] = useState({ title: '', description: '', price: '', type: 'sell', category: 'Books', condition: 'Good', college: '' })
+  const [image, setImage] = useState(null)
+  const [preview, setPreview] = useState(null)
+  const [uploading, setUploading] = useState(false)
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
@@ -11,15 +14,41 @@ export default function CreateListing() {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
+ const handleImage = (e) => {
+    const file = e.target.files[0]
+    if (!file) return
+    setImage(file)
+    setPreview(URL.createObjectURL(file))
+  }
+
   const handleSubmit = async () => {
     try {
+      setUploading(true)
       const token = localStorage.getItem('token')
-      await axios.post('http://localhost:5000/api/listings', form, {
+      let imageUrl = ''
+
+     if (image) {
+        const formData = new FormData()
+        formData.append('image', image)
+        console.log('Uploading image...', image)
+        const uploadRes = await axios.post('http://localhost:5000/api/upload', formData, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        console.log('Upload result:', uploadRes.data)
+        imageUrl = uploadRes.data.url
+      }
+
+      await axios.post('http://localhost:5000/api/listings', { ...form, image: imageUrl }, {
         headers: { Authorization: `Bearer ${token}` }
       })
+
       navigate('/')
     } catch (err) {
       setError('Something went wrong. Are you logged in?')
+    } finally {
+      setUploading(false)
     }
   }
 
@@ -31,6 +60,23 @@ export default function CreateListing() {
         <p style={{ color: '#7c6fb8', marginBottom: 32 }}>Fill in the details below</p>
 
         {error && <p style={{ color: 'red', marginBottom: 16, fontSize: 14 }}>{error}</p>}
+
+        {/* Image Upload */}
+        <div style={{ marginBottom: 24 }}>
+          <label style={{ fontSize: 13, fontWeight: 600, color: '#5a4fa3', display: 'block', marginBottom: 6 }}>Photo of Item</label>
+          <div onClick={() => document.getElementById('imageInput').click()}
+            style={{ border: '2px dashed #d4ceff', borderRadius: 16, padding: '24px', textAlign: 'center', cursor: 'pointer', background: '#f7f5ff' }}>
+            {preview ? (
+              <img src={preview} alt="preview" style={{ maxHeight: 200, borderRadius: 12, maxWidth: '100%' }} />
+            ) : (
+              <>
+                <div style={{ fontSize: 36, marginBottom: 8 }}>📷</div>
+                <p style={{ color: '#7c6fb8', fontSize: 14 }}>Click to upload a photo</p>
+              </>
+            )}
+          </div>
+          <input id="imageInput" type="file" accept="image/*" onChange={handleImage} style={{ display: 'none' }} />
+        </div>
 
         {[
           { label: 'Title', name: 'title', placeholder: 'e.g. Engineering Mathematics Book', type: 'text' },
@@ -53,7 +99,7 @@ export default function CreateListing() {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginBottom: 24 }}>
           {[
             { label: 'Type', name: 'type', options: ['sell', 'rent'] },
-            { label: 'Category', name: 'category', options: ['Books', 'Electronics', 'Furniture', 'Transport', 'Stationery'] },
+            { label: 'Category', name: 'category', options: ['Books', 'Electronics', 'Furniture', 'Transport', 'Stationery', 'Notes', 'Hostel Items', 'Calculators'] },
             { label: 'Condition', name: 'condition', options: ['Excellent', 'Good', 'Fair'] },
           ].map(field => (
             <div key={field.name}>
@@ -66,9 +112,9 @@ export default function CreateListing() {
           ))}
         </div>
 
-        <button onClick={handleSubmit}
-          style={{ width: '100%', background: 'linear-gradient(135deg, #5a3ff5, #9b5de5)', color: '#fff', border: 'none', borderRadius: 14, padding: '14px', fontSize: 16, fontFamily: 'Sora, sans-serif', fontWeight: 600, cursor: 'pointer' }}>
-          🚀 Post Listing
+        <button onClick={handleSubmit} disabled={uploading}
+          style={{ width: '100%', background: uploading ? '#9b8fd4' : 'linear-gradient(135deg, #5a3ff5, #9b5de5)', color: '#fff', border: 'none', borderRadius: 14, padding: '14px', fontSize: 16, fontFamily: 'Sora, sans-serif', fontWeight: 600, cursor: uploading ? 'not-allowed' : 'pointer' }}>
+          {uploading ? '⏳ Uploading...' : '🚀 Post Listing'}
         </button>
 
         <button onClick={() => navigate('/')}
