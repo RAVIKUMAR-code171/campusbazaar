@@ -13,7 +13,7 @@ export default function Register() {
 
   const handleRegister = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/register', form)
+      const res = await axios.post('https://campusjugaad-server.onrender.com/api/auth/register', form)
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('user', JSON.stringify(res.data.user))
       navigate('/')

@@ -25,7 +25,7 @@ export default function ListingDetail() {
 
   const fetchListing = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/listings/${id}`)
+      const res = await axios.get(`https://campusjugaad-server.onrender.com/api/listings/${id}`)
       setListing(res.data)
       setLoading(false)
     } catch (err) {
@@ -38,7 +38,7 @@ export default function ListingDetail() {
       setPaying(true)
 
       // Create order
-      const orderRes = await axios.post('http://localhost:5000/api/payment/create-order', {
+      const orderRes = await axios.post('https://campusjugaad-server.onrender.com/api/payment/create-order', {
         amount: listing.price
       }, {
         headers: { Authorization: `Bearer ${token}` }
@@ -56,7 +56,7 @@ export default function ListingDetail() {
         order_id: order.id,
         handler: async (response) => {
           try {
-            const verifyRes = await axios.post('http://localhost:5000/api/payment/verify', response, {
+            const verifyRes = await axios.post('https://campusjugaad-server.onrender.com/api/payment/verify', response, {
               headers: { Authorization: `Bearer ${token}` }
             })
             if (verifyRes.data.success) {
@@ -89,12 +89,12 @@ export default function ListingDetail() {
     try {
       setWishlistLoading(true)
       if (wishlisted) {
-        await axios.delete(`http://localhost:5000/api/wishlist/${id}`, {
+        await axios.delete(`https://campusjugaad-server.onrender.com/api/wishlist/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         })
         setWishlisted(false)
       } else {
-        await axios.post(`http://localhost:5000/api/wishlist/${id}`, {}, {
+        await axios.post(`https://campusjugaad-server.onrender.com/api/wishlist/${id}`, {}, {
           headers: { Authorization: `Bearer ${token}` }
         })
         setWishlisted(true)
@@ -108,7 +108,7 @@ export default function ListingDetail() {
 
   const fetchReviews = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/reviews/${id}`)
+      const res = await axios.get(`https://campusjugaad-server.onrender.com/api/reviews/${id}`)
       setReviews(res.data)
     } catch (err) {
       console.log(err)
@@ -119,7 +119,7 @@ export default function ListingDetail() {
     if (!token) { navigate('/login'); return; }
     try {
       setSubmitting(true)
-      await axios.post(`http://localhost:5000/api/reviews/${id}`, {
+      await axios.post(`https://campusjugaad-server.onrender.com/api/reviews/${id}`, {
         rating,
         comment,
         seller: listing.seller._id

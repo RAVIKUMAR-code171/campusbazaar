@@ -16,7 +16,7 @@ export default function Requests() {
 
   const fetchRequests = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/requests')
+      const res = await axios.get('https://campusjugaad-server.onrender.com/api/requests')
       setRequests(res.data)
     } catch (err) { console.log(err) }
   }
@@ -24,7 +24,7 @@ export default function Requests() {
   const handleSubmit = async () => {
     if (!token) { navigate('/login'); return; }
     try {
-      await axios.post('http://localhost:5000/api/requests', form, {
+      await axios.post('https://campusjugaad-server.onrender.com/api/requests', form, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setShowForm(false)
@@ -36,7 +36,7 @@ export default function Requests() {
   const handleRespond = async (id) => {
     if (!token) { navigate('/login'); return; }
     try {
-      await axios.post(`http://localhost:5000/api/requests/${id}/respond`, { message: responseMsg }, {
+      await axios.post(`https://campusjugaad-server.onrender.com/api/requests/${id}/respond`, { message: responseMsg }, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setResponding(null)
@@ -48,7 +48,7 @@ export default function Requests() {
   const handleDelete = async (id) => {
     if (!window.confirm('Delete this request?')) return
     try {
-      await axios.delete(`http://localhost:5000/api/requests/${id}`, {
+      await axios.delete(`https://campusjugaad-server.onrender.com/api/requests/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       fetchRequests()

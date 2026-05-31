@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useParams, useNavigate } from 'react-router-dom'
 import { io } from 'socket.io-client'
 
-const socket = io('http://localhost:5000')
+const socket = io('https://campusjugaad-server.onrender.com')
 
 export default function Chat() {
   const [messages, setMessages] = useState([])
@@ -41,7 +41,7 @@ export default function Chat() {
 
   const fetchMessages = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/messages/${listingId}/${otherUserId}`, {
+      const res = await axios.get(`https://campusjugaad-server.onrender.com/api/messages/${listingId}/${otherUserId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setMessages(res.data)
@@ -53,7 +53,7 @@ export default function Chat() {
 
   const fetchListing = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/listings/${listingId}`)
+      const res = await axios.get(`https://campusjugaad-server.onrender.com/api/listings/${listingId}`)
       setListing(res.data)
       setOtherUser(res.data.seller)
     } catch (err) {
@@ -64,7 +64,7 @@ export default function Chat() {
   const sendMessage = async () => {
     if (!newMessage.trim()) return
     try {
-      const res = await axios.post('http://localhost:5000/api/messages', {
+      const res = await axios.post('https://campusjugaad-server.onrender.com/api/messages', {
         receiver: otherUserId,
         listing: listingId,
         message: newMessage

@@ -21,7 +21,7 @@ export default function Profile() {
   const fetchProfile = async () => {
     try {
       const [listingsRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/listings/my', {
+        axios.get('https://campusjugaad-server.onrender.com/api/listings/my', {
           headers: { Authorization: `Bearer ${token}` }
         })
       ])

@@ -3,18 +3,18 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 const C = {
-  bg: '#f8f9ff',
+  bg: '#FFFAF4',
   surface: '#ffffff',
-  border: '#e2e8f0',
-  navBg: '#0f1c3f',
-  heroBg: '#0f1c3f',
-  primary: '#c9a84c',
-  light: '#ffffff',
-  text: '#1e293b',
-  muted: '#64748b',
-  accent: '#c9a84c',
+  border: '#FFCF90',
+  navBg: '#ffffff',
+  heroBg: '#FFFAF4',
+  primary: '#FF9B3A',
+  light: '#1A0C00',
+  text: '#1A0C00',
+  muted: '#8A6A50',
+  accent: '#C45C00',
   card: '#ffffff',
-  darkCard: '#162040'
+  darkCard: '#FFE8C8'
 }
 
 const categoryIcons = {
@@ -37,7 +37,7 @@ export default function Home() {
 
   const fetchListings = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/listings')
+      const res = await axios.get('https://campusjugaad-server.onrender.com/api/listings')
       setListings(res.data)
     } catch (err) { console.log(err) }
   }
@@ -130,7 +130,7 @@ export default function Home() {
       </nav>
 
       {/* Hero */}
-      <div className="hero-pad" style={{ background: `linear-gradient(135deg, #0a1628 0%, #0f1c3f 50%, #162040 100%)`, padding: '80px 32px', textAlign: 'center', borderBottom: `1px solid ${C.border}` }}>
+      <div className="hero-pad" style={{ background: `linear-gradient(135deg, #FFE8C8 0%, #FFFAF4 50%, #FFF4E0 100%)`, padding: '80px 32px', textAlign: 'center', borderBottom: `1px solid ${C.border}` }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(217,119,6,0.15)', border: `1px solid rgba(217,119,6,0.3)`, borderRadius: 999, padding: '6px 16px', marginBottom: 28 }}>
           <span style={{ color: C.primary, fontSize: 13, fontWeight: 600 }}>✦ Verified Students Only Marketplace</span>
         </div>

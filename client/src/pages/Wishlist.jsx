@@ -15,7 +15,7 @@ export default function Wishlist() {
 
   const fetchWishlist = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/wishlist', {
+      const res = await axios.get('https://campusjugaad-server.onrender.com/api/wishlist', {
         headers: { Authorization: `Bearer ${token}` }
       })
       setWishlist(res.data)
@@ -27,7 +27,7 @@ export default function Wishlist() {
 
   const removeFromWishlist = async (listingId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/wishlist/${listingId}`, {
+      await axios.delete(`https://campusjugaad-server.onrender.com/api/wishlist/${listingId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setWishlist(wishlist.filter(w => w.listing._id !== listingId))

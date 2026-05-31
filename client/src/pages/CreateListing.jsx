@@ -31,7 +31,7 @@ export default function CreateListing() {
         const formData = new FormData()
         formData.append('image', image)
         console.log('Uploading image...', image)
-        const uploadRes = await axios.post('http://localhost:5000/api/upload', formData, {
+        const uploadRes = await axios.post('https://campusjugaad-server.onrender.com/api/upload', formData, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -40,7 +40,7 @@ export default function CreateListing() {
         imageUrl = uploadRes.data.url
       }
 
-      await axios.post('http://localhost:5000/api/listings', { ...form, image: imageUrl }, {
+      await axios.post('https://campusjugaad-server.onrender.com/api/listings', { ...form, image: imageUrl }, {
         headers: { Authorization: `Bearer ${token}` }
       })
 

@@ -15,7 +15,7 @@ export default function MyListings() {
 
   const fetchMyListings = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/listings')
+      const res = await axios.get('https://campusjugaad-server.onrender.com/api/listings')
       const mine = res.data.filter(l => l.seller?._id === user.id)
       setListings(mine)
       setLoading(false)
@@ -28,7 +28,7 @@ export default function MyListings() {
     if (!window.confirm('Are you sure you want to delete this listing?')) return
     try {
       const token = localStorage.getItem('token')
-      await axios.delete(`http://localhost:5000/api/listings/${id}`, {
+      await axios.delete(`https://campusjugaad-server.onrender.com/api/listings/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setListings(listings.filter(l => l._id !== id))
