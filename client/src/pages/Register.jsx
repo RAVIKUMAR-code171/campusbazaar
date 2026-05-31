@@ -26,7 +26,7 @@ export default function Register() {
     <div style={{ fontFamily: 'Sora, sans-serif', minHeight: '100vh', background: 'linear-gradient(135deg, #1a0845, #3d1fa9)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
       <div style={{ background: '#fff', borderRadius: 24, padding: '40px', width: '100%', maxWidth: 420 }}>
-        <h2 style={{ fontSize: 28, fontWeight: 800, color: '#1a1035', marginBottom: 8 }}>Join CampusBazaar 🎓</h2>
+        <h2 style={{ fontSize: 28, fontWeight: 800, color: '#1a1035', marginBottom: 8 }}>Join CampusJugaad 🎓</h2>
         <p style={{ color: '#7c6fb8', marginBottom: 32 }}>Create your free student account</p>
 
         {error && <p style={{ color: 'red', marginBottom: 16, fontSize: 14 }}>{error}</p>}

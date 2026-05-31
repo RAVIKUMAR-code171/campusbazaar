@@ -24,7 +24,7 @@ export default function Login() {
       <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
       <div style={{ background: '#fff', borderRadius: 24, padding: '40px', width: '100%', maxWidth: 420 }}>
         <h2 style={{ fontSize: 28, fontWeight: 800, color: '#1a1035', marginBottom: 8 }}>Welcome back 👋</h2>
-        <p style={{ color: '#7c6fb8', marginBottom: 32 }}>Login to your CampusBazaar account</p>
+        <p style={{ color: '#7c6fb8', marginBottom: 32 }}>Login to your CampusJugaad account</p>
         
         {error && <p style={{ color: 'red', marginBottom: 16, fontSize: 14 }}>{error}</p>}
         
