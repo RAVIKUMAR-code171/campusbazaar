@@ -11,6 +11,7 @@ export default function ListingDetail() {
   const [submitting, setSubmitting] = useState(false)
   const [wishlisted, setWishlisted] = useState(false)
   const [wishlistLoading, setWishlistLoading] = useState(false)
+  const [paying, setPaying] = useState(false)
   const [reviewError, setReviewError] = useState('')
   const { id } = useParams()
   const navigate = useNavigate()
@@ -31,7 +32,58 @@ export default function ListingDetail() {
       setLoading(false)
     }
   }
-  
+  const handlePayment = async () => {
+    if (!token) { navigate('/login'); return; }
+    try {
+      setPaying(true)
+
+      // Create order
+      const orderRes = await axios.post('http://localhost:5000/api/payment/create-order', {
+        amount: listing.price
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+
+      const order = orderRes.data
+
+      // Open Razorpay popup
+      const options = {
+        key: 'rzp_test_SvnSryp6Akgcwx',
+        amount: order.amount,
+        currency: 'INR',
+        name: 'CampusBazaar',
+        description: listing.title,
+        order_id: order.id,
+        handler: async (response) => {
+          try {
+            const verifyRes = await axios.post('http://localhost:5000/api/payment/verify', response, {
+              headers: { Authorization: `Bearer ${token}` }
+            })
+            if (verifyRes.data.success) {
+              alert('🎉 Payment successful! The seller will contact you soon.')
+            }
+          } catch (err) {
+            alert('Payment verification failed')
+          }
+        },
+        prefill: {
+          name: user?.name,
+          email: user?.email
+        },
+        theme: {
+          color: '#5a3ff5'
+        }
+      }
+
+      const rzp = new window.Razorpay(options)
+      rzp.open()
+    } catch (error) {
+      alert('Payment failed. Please try again.')
+    } finally {
+      setPaying(false)
+    }
+  }
+
   const handleWishlist = async () => {
     if (!token) { navigate('/login'); return; }
     try {
@@ -162,9 +214,14 @@ export default function ListingDetail() {
                 </div>
               ))}
             </div>
+            <button onClick={handlePayment} disabled={paying}
+             style={{ width: '100%', background: 'linear-gradient(135deg, #f59e0b, #d97706)', color: '#fff', border: 'none', borderRadius: 14, padding: '14px', fontSize: 16, fontFamily: 'Sora, sans-serif', fontWeight: 600, cursor: 'pointer', marginBottom: 12 }}>
+             {paying ? '⏳ Processing...' : '💳 Buy Now — ₹' + listing.price}
+            </button>
 
-            <button style={{ width: '100%', background: 'linear-gradient(135deg, #5a3ff5, #9b5de5)', color: '#fff', border: 'none', borderRadius: 14, padding: '14px', fontSize: 16, fontFamily: 'Sora, sans-serif', fontWeight: 600, cursor: 'pointer', marginBottom: 12 }}>
-              💬 Contact Seller
+           <button onClick={() => token ? navigate(`/chat/${listing._id}/${listing.seller._id}`) : navigate('/login')}
+            style={{ width: '100%', background: 'linear-gradient(135deg, #5a3ff5, #9b5de5)', color: '#fff', border: 'none', borderRadius: 14, padding: '14px', fontSize: 16, fontFamily: 'Sora, sans-serif', fontWeight: 600, cursor: 'pointer', marginBottom: 12 }}>
+            💬 Contact Seller
             </button>
             <button onClick={handleWishlist}
               style={{ width: '100%', background: wishlisted ? '#fff0f0' : 'transparent', border: `1.5px solid ${wishlisted ? '#ffb3b3' : '#d4ceff'}`, borderRadius: 14, padding: '14px', fontSize: 16, fontFamily: 'Sora, sans-serif', fontWeight: 500, cursor: 'pointer', color: wishlisted ? '#e53935' : '#5a4fa3' }}>

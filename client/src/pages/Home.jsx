@@ -100,6 +100,10 @@ export default function Home() {
                   style={{ background: C.primary, color: C.bg, border: 'none', borderRadius: 12, padding: '8px 18px', fontFamily: 'Sora,sans-serif', fontWeight: 700, cursor: 'pointer', fontSize: 14 }}>
                   + Post
                 </button>
+                <button onClick={() => navigate('/profile')} className="hov-btn"
+                 style={{ background: 'transparent', border: `1.5px solid ${C.border}`, borderRadius: 12, padding: '8px 14px', fontFamily: 'Sora,sans-serif', fontWeight: 500, cursor: 'pointer', color: C.muted, fontSize: 14 }}>
+                 👤 Profile
+                </button>
                 <button onClick={() => navigate('/my-listings')} className="hov-btn"
                   style={{ background: 'transparent', border: `1.5px solid ${C.border}`, borderRadius: 12, padding: '8px 14px', fontFamily: 'Sora,sans-serif', fontWeight: 500, cursor: 'pointer', color: C.muted, fontSize: 14 }}>
                   My Listings
@@ -321,7 +325,10 @@ export default function Home() {
             {[['Marketplace', ['Browse', 'Post Listing', 'Borrow']], ['Company', ['About Us', 'Contact', 'Safety Tips']]].map(([title, links]) => (
               <div key={title}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: C.primary, marginBottom: 12, textTransform: 'uppercase', letterSpacing: 1 }}>{title}</div>
-                {links.map(l => <div key={l} style={{ fontSize: 14, color: C.muted, marginBottom: 8, cursor: 'pointer' }}>{l}</div>)}
+                {links.map(l => (
+               <div key={l} onClick={() => l === 'About Us' ? navigate('/about') : null}
+                style={{ fontSize: 14, color: C.muted, marginBottom: 8, cursor: 'pointer' }}>{l}</div>
+              ))}
               </div>
             ))}
           </div>
