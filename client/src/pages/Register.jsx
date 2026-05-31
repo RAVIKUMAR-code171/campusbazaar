@@ -23,48 +23,67 @@ export default function Register() {
   }
 
   return (
-    <div style={{ fontFamily: 'Sora, sans-serif', minHeight: '100vh', background: 'linear-gradient(135deg, #1a0845, #3d1fa9)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div style={{ fontFamily: 'Sora, sans-serif', minHeight: '100vh', background: '#FFFAF4', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
       <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-      <div style={{ background: '#fff', borderRadius: 24, padding: '40px', width: '100%', maxWidth: 420 }}>
-        <h2 style={{ fontSize: 28, fontWeight: 800, color: '#1a1035', marginBottom: 8 }}>Join CampusJugaad 🎓</h2>
-        <p style={{ color: '#7c6fb8', marginBottom: 32 }}>Create your free student account</p>
 
-        {error && <p style={{ color: 'red', marginBottom: 16, fontSize: 14 }}>{error}</p>}
+      <div style={{ width: '100%', maxWidth: 420 }}>
 
-        {[
-          { label: 'Full Name', name: 'name', placeholder: 'Aryan Kumar', type: 'text' },
-          { label: 'College Email', name: 'email', placeholder: 'aryan@dtu.ac.in', type: 'email' },
-          { label: 'Password', name: 'password', placeholder: '••••••••', type: 'password' },
-        ].map(field => (
-          <div key={field.name} style={{ marginBottom: 16 }}>
-            <label style={{ fontSize: 13, fontWeight: 600, color: '#5a4fa3', display: 'block', marginBottom: 6 }}>{field.label}</label>
-            <input type={field.type} name={field.name} placeholder={field.placeholder} value={form[field.name]} onChange={handleChange}
-              style={{ width: '100%', border: '1.5px solid #d4ceff', borderRadius: 12, padding: '12px 16px', fontFamily: 'Sora, sans-serif', fontSize: 14, outline: 'none', boxSizing: 'border-box' }} />
-          </div>
-        ))}
-
-        <div style={{ marginBottom: 24 }}>
-          <label style={{ fontSize: 13, fontWeight: 600, color: '#5a4fa3', display: 'block', marginBottom: 6 }}>College</label>
-          <select name="college" value={form.college} onChange={handleChange}
-            style={{ width: '100%', border: '1.5px solid #d4ceff', borderRadius: 12, padding: '12px 16px', fontFamily: 'Sora, sans-serif', fontSize: 14, outline: 'none', background: '#fff', boxSizing: 'border-box' }}>
-            <option value="">Select your college</option>
-            <option>IIT Delhi</option>
-            <option>DTU</option>
-            <option>NSUT</option>
-            <option>GGSIPU</option>
-            <option>Jamia Millia</option>
-            <option>Other</option>
-          </select>
+        {/* Logo */}
+        <div onClick={() => navigate('/')} style={{ textAlign: 'center', marginBottom: 32, cursor: 'pointer' }}>
+          <div style={{ width: 52, height: 52, borderRadius: 16, background: '#C45C00', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, margin: '0 auto 12px' }}>🎓</div>
+          <span style={{ fontSize: 22, fontWeight: 700, color: '#C45C00' }}>CampusJugaad</span>
         </div>
 
-        <button onClick={handleRegister}
-          style={{ width: '100%', background: 'linear-gradient(135deg, #5a3ff5, #9b5de5)', color: '#fff', border: 'none', borderRadius: 14, padding: '14px', fontSize: 16, fontFamily: 'Sora, sans-serif', fontWeight: 600, cursor: 'pointer' }}>
-          Create Account
-        </button>
+        {/* Card */}
+        <div style={{ background: '#fff', borderRadius: 24, padding: '36px', border: '1.5px solid #FFCF90' }}>
+          <h2 style={{ fontSize: 24, fontWeight: 700, color: '#1A0C00', marginBottom: 6 }}>Join CampusJugaad 🎓</h2>
+          <p style={{ color: '#8A6A50', marginBottom: 28, fontSize: 14 }}>Create your free student account</p>
 
-        <p style={{ textAlign: 'center', marginTop: 20, fontSize: 14, color: '#7c6fb8' }}>
-          Already have an account? <span onClick={() => navigate('/login')} style={{ color: '#5a3ff5', fontWeight: 600, cursor: 'pointer' }}>Login</span>
-        </p>
+          {error && (
+            <div style={{ background: '#fff0f0', border: '1px solid #ffb3b3', borderRadius: 10, padding: '10px 14px', marginBottom: 16, fontSize: 13, color: '#c00' }}>
+              {error}
+            </div>
+          )}
+
+          {[
+            { label: 'Full Name', name: 'name', placeholder: 'Ravi Kumar', type: 'text' },
+            { label: 'College Email', name: 'email', placeholder: 'ravi@glbajaj.ac.in', type: 'email' },
+            { label: 'Password', name: 'password', placeholder: '••••••••', type: 'password' },
+          ].map(field => (
+            <div key={field.name} style={{ marginBottom: 16 }}>
+              <label style={{ fontSize: 13, fontWeight: 600, color: '#8A6A50', display: 'block', marginBottom: 6 }}>{field.label}</label>
+              <input type={field.type} name={field.name} placeholder={field.placeholder} value={form[field.name]} onChange={handleChange}
+                style={{ width: '100%', border: '1.5px solid #FFCF90', borderRadius: 12, padding: '12px 16px', fontFamily: 'Sora, sans-serif', fontSize: 14, outline: 'none', boxSizing: 'border-box', background: '#FFFAF4', color: '#1A0C00' }} />
+            </div>
+          ))}
+
+          <div style={{ marginBottom: 28 }}>
+            <label style={{ fontSize: 13, fontWeight: 600, color: '#8A6A50', display: 'block', marginBottom: 6 }}>College</label>
+            <select name="college" value={form.college} onChange={handleChange}
+              style={{ width: '100%', border: '1.5px solid #FFCF90', borderRadius: 12, padding: '12px 16px', fontFamily: 'Sora, sans-serif', fontSize: 14, outline: 'none', background: '#FFFAF4', color: '#1A0C00', boxSizing: 'border-box' }}>
+              <option value="">Select your college</option>
+              <option>IIT Delhi</option>
+              <option>DTU</option>
+              <option>NSUT</option>
+              <option>GGSIPU</option>
+              <option>Jamia Millia</option>
+              <option>GL Bajaj Institute</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <button onClick={handleRegister}
+            style={{ width: '100%', background: '#C45C00', color: '#fff', border: 'none', borderRadius: 14, padding: '14px', fontSize: 15, fontFamily: 'Sora, sans-serif', fontWeight: 600, cursor: 'pointer', marginBottom: 16 }}>
+            Create Account →
+          </button>
+
+          <p style={{ textAlign: 'center', fontSize: 14, color: '#8A6A50' }}>
+            Already have an account?{' '}
+            <span onClick={() => navigate('/login')} style={{ color: '#C45C00', fontWeight: 600, cursor: 'pointer' }}>
+              Login
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   )
