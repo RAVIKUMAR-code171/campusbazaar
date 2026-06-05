@@ -11,6 +11,7 @@ import Wishlist from './pages/Wishlist'
 import Profile from './pages/Profile'
 import Chat from './pages/Chat'
 import AboutUs from './pages/AboutUs'
+import AuthSuccess from './pages/AuthSuccess'
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/chat/:listingId/:otherUserId" element={<Chat />} />
         <Route path="/about" element={<AboutUs />} />
+        <Route path="/auth/success" element={<AuthSuccess />} />
       </Routes>
     </BrowserRouter>
   )
