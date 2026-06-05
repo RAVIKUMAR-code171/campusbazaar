@@ -31,7 +31,11 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false)
   const navigate = useNavigate()
   const token = localStorage.getItem('token')
-  const user = JSON.parse(localStorage.getItem('user') || 'null')
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user') || 'null'))
+
+useEffect(() => {
+  setUser(JSON.parse(localStorage.getItem('user') || 'null'))
+}, [])
 
   useEffect(() => { fetchListings() }, [])
 
