@@ -10,9 +10,16 @@ export default function AuthSuccess() {
     const user = params.get('user')
 
     if (token && user) {
-      localStorage.setItem('token', token)
-      localStorage.setItem('user', user)
-      navigate('/')
+      try {
+        const parsedUser = JSON.parse(decodeURIComponent(user))
+        localStorage.setItem('token', token)
+        localStorage.setItem('user', JSON.stringify(parsedUser))
+        navigate('/')
+      } catch (e) {
+        localStorage.setItem('token', token)
+        localStorage.setItem('user', user)
+        navigate('/')
+      }
     } else {
       navigate('/login')
     }
