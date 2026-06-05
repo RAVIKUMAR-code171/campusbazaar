@@ -101,6 +101,9 @@ export default function Home() {
                   + Post
                 </button>
                 <button onClick={() => navigate('/profile')} className="hov-btn"
+                 style={{ background: C.primary, color: C.bg, border: 'none', borderRadius: '50%', width: 36, height: 36, fontFamily: 'Sora,sans-serif', fontWeight: 700, cursor: 'pointer', fontSize: 14, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                 {user?.name?.charAt(0).toUpperCase()}
+                  </button>
                  style={{ background: 'transparent', border: `1.5px solid ${C.border}`, borderRadius: 12, padding: '8px 14px', fontFamily: 'Sora,sans-serif', fontWeight: 500, cursor: 'pointer', color: C.muted, fontSize: 14 }}>
                  👤 Profile
                 </button>
