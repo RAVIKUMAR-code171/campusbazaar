@@ -72,6 +72,15 @@ export default function Register() {
             </select>
           </div>
 
+          <button onClick={() => window.location.href = 'https://campusjugaad-server.onrender.com/api/auth/google'}
+           style={{ width: '100%', background: '#fff', color: '#1A0C00', border: '1.5px solid #E8DCC8', borderRadius: 14, padding: '14px', fontSize: 15, fontFamily: 'Sora, sans-serif', fontWeight: 600, cursor: 'pointer', marginBottom: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
+          <img src="https://www.google.com/favicon.ico" alt="Google" style={{ width: 18, height: 18 }} />
+            Continue with Google
+          </button>
+
+<div style={{ textAlign: 'center', marginBottom: 16, color: '#8A6A50', fontSize: 13 }}>
+  — or register with email —
+</div>
           <button onClick={handleRegister}
             style={{ width: '100%', background: 'linear-gradient(135deg, #8B6914, #C9A84C)', color: '#fff', border: 'none', borderRadius: 14, padding: '14px', fontSize: 15, fontFamily: 'Sora, sans-serif', fontWeight: 600, cursor: 'pointer', marginBottom: 16 }}>
             Create Account →
