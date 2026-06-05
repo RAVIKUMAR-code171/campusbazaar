@@ -108,9 +108,6 @@ useEffect(() => {
                style={{ background: C.primary, color: '#fff', borderRadius: '50%', width: 38, height: 38, fontFamily: 'Sora,sans-serif', fontWeight: 700, cursor: 'pointer', fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                {user?.name?.charAt(0).toUpperCase() || '👤'}
                 </div>
-                 style={{ background: 'transparent', border: `1.5px solid ${C.border}`, borderRadius: 12, padding: '8px 14px', fontFamily: 'Sora,sans-serif', fontWeight: 500, cursor: 'pointer', color: C.muted, fontSize: 14 }}>
-                 👤 Profile
-                </button>
                 <button onClick={() => navigate('/my-listings')} className="hov-btn"
                   style={{ background: 'transparent', border: `1.5px solid ${C.border}`, borderRadius: 12, padding: '8px 14px', fontFamily: 'Sora,sans-serif', fontWeight: 500, cursor: 'pointer', color: C.muted, fontSize: 14 }}>
                   My Listings
