@@ -11,11 +11,10 @@ const { Server } = require('socket.io');
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173', 'https://campusjugaad.vercel.app'],
     methods: ['GET', 'POST']
   }
 });
-
 // Socket.io
 const onlineUsers = new Map();
 
@@ -38,7 +37,10 @@ io.on('connection', (socket) => {
   });
 });
 
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://campusjugaad.vercel.app'],
+  credentials: true
+}));
 app.use(express.json());
 const session = require('express-session');
 const passport = require('passport');
