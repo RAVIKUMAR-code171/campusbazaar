@@ -111,7 +111,7 @@ export default function Chat() {
             <p style={{ fontSize: 12, color: '#7c6fb8', margin: 0 }}>About: {listing?.title}</p>
           </div>
         </div>
-        <span onClick={() => navigate('/')} style={{ fontSize: 18, fontWeight: 800, background: 'linear-gradient(135deg, #5a3ff5, #9b5de5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', cursor: 'pointer' }}>🎓 CampusBazaar</span>
+        <span onClick={() => navigate('/')} style={{ fontSize: 18, fontWeight: 800, background: 'linear-gradient(135deg, #5a3ff5, #9b5de5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', cursor: 'pointer' }}>🎓 CampusJugaad</span>
       </nav>
 
       {/* Listing Info */}
