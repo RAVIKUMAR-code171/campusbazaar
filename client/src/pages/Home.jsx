@@ -330,9 +330,16 @@ useEffect(() => {
               <div key={title}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: C.primary, marginBottom: 12, textTransform: 'uppercase', letterSpacing: 1 }}>{title}</div>
                 {links.map(l => (
-               <div key={l} onClick={() => l === 'About Us' ? navigate('/about') : null}
-                style={{ fontSize: 14, color: C.muted, marginBottom: 8, cursor: 'pointer' }}>{l}</div>
-              ))}
+                <div key={l} onClick={() => {
+                 if (l === 'About Us') navigate('/about')
+                 if (l === 'Browse') document.getElementById('listings').scrollIntoView({ behavior: 'smooth' })
+                if (l === 'Post Listing') navigate('/create')
+                if (l === 'Borrow') { setType('rent'); document.getElementById('listings').scrollIntoView({ behavior: 'smooth' }) }
+                if (l === 'Contact') window.location.href = 'mailto:campusjugaad@gmail.com'
+                if (l === 'Safety Tips') navigate('/about')
+                }}
+               style={{ fontSize: 14, color: C.muted, marginBottom: 8, cursor: 'pointer' }}>{l}</div>
+               ))}
               </div>
             ))}
           </div>
