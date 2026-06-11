@@ -31,9 +31,6 @@ exports.register = async (req, res) => {
     });
 
     await user.save();
-    await sendOTP(email, otp);
-
-   await user.save();
     
     try {
       await sendOTP(email, otp);
