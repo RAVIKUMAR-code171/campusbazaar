@@ -34,7 +34,8 @@ exports.register = async (req, res) => {
     await sendOTP(email, otp);
 
     res.status(201).json({ message: 'OTP sent to your email!', userId: user._id });
-  } catch (error) {
+ } catch (error) {
+    console.error('Register error:', error);
     res.status(500).json({ message: error.message });
   }
 };
