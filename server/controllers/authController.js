@@ -33,8 +33,18 @@ exports.register = async (req, res) => {
     await user.save();
     await sendOTP(email, otp);
 
+   await user.save();
+    
+    try {
+      await sendOTP(email, otp);
+    } catch (emailError) {
+      console.error('Email error:', emailError);
+      await User.findByIdAndDelete(user._id);
+      return res.status(500).json({ message: 'Failed to send OTP email. Please try again.' });
+    }
+
     res.status(201).json({ message: 'OTP sent to your email!', userId: user._id });
- } catch (error) {
+  } catch (error) {
     console.error('Register error:', error);
     res.status(500).json({ message: error.message });
   }
