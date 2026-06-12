@@ -8,6 +8,7 @@ import ListingDetail from './pages/ListingDetail'
 import MyListings from './pages/MyListings'
 import Requests from './pages/Requests'
 import Wishlist from './pages/Wishlist'
+import Categories from './pages/Categories'
 import Profile from './pages/Profile'
 import Chat from './pages/Chat'
 import AboutUs from './pages/AboutUs'
@@ -25,6 +26,7 @@ function App() {
         <Route path="/my-listings" element={<MyListings />} />
         <Route path="/requests" element={<Requests />} />
         <Route path="/wishlist" element={<Wishlist />} />
+<Route path="/categories" element={<Categories />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/chat/:listingId/:otherUserId" element={<Chat />} />
         <Route path="/about" element={<AboutUs />} />

@@ -97,10 +97,11 @@ useEffect(() => {
             <span style={{ fontSize: 20, fontWeight: 800, color: C.light }}>CampusJugaad</span>
           </div>
           <div className="hide-mobile" style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-            {['Home', 'Browse', 'Borrow', 'Requests'].map(n => (
+            {['Home', 'Browse', 'Borrow', 'Requests', 'Categories'].map(n => (
               <span key={n} onClick={() => {
                  if (n === 'Browse') document.getElementById('listings').scrollIntoView({ behavior: 'smooth' })
                  if (n === 'Requests') navigate('/requests')
+if (n === 'Categories') navigate('/categories')
               }}i din
                 style={{ padding: '8px 16px', borderRadius: 999, fontSize: 14, fontWeight: 500, color: C.muted, cursor: 'pointer' }}
                 onMouseEnter={e => e.target.style.color = C.light} onMouseLeave={e => e.target.style.color = C.muted}>{n}</span>
