@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import toast from 'react-hot-toast'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
@@ -31,8 +32,9 @@ export default function Wishlist() {
         headers: { Authorization: `Bearer ${token}` }
       })
       setWishlist(wishlist.filter(w => w.listing._id !== listingId))
+      toast.success('Removed from wishlist!')
     } catch (err) {
-      alert('Error removing from wishlist')
+      toast.error('Error removing from wishlist!')
     }
   }
 

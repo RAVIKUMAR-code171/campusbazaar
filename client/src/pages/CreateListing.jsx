@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
@@ -44,9 +45,11 @@ export default function CreateListing() {
         headers: { Authorization: `Bearer ${token}` }
       })
 
+      toast.success('Listing posted successfully! 🎉')
       navigate('/')
     } catch (err) {
       setError('Something went wrong. Are you logged in?')
+      toast.error('Something went wrong. Are you logged in?')
     } finally {
       setUploading(false)
     }
