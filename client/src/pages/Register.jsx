@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
@@ -22,8 +23,10 @@ export default function Register() {
       setUserId(res.data.userId)
       setStep(2)
       setError('')
+      toast.success('OTP sent to your email! 📧')
     } catch (err) {
       setError(err.response?.data?.message || 'Something went wrong. Try again.')
+      toast.error(err.response?.data?.message || 'Something went wrong!')
     } finally {
       setLoading(false)
     }
@@ -35,6 +38,7 @@ export default function Register() {
       const res = await axios.post('https://campusjugaad-server.onrender.com/api/auth/verify-otp', { userId, otp })
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('user', JSON.stringify(res.data.user))
+      toast.success('Welcome to CampusJugaad! 🎉')
       navigate('/')
     } catch (err) {
       setError(err.response?.data?.message || 'Invalid OTP. Try again.')

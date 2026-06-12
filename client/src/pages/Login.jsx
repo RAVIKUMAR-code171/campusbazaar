@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import toast from 'react-hot-toast'
+
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
@@ -13,9 +15,13 @@ export default function Login() {
       const res = await axios.post('https://campusjugaad-server.onrender.com/api/auth/login', { email, password })
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('user', JSON.stringify(res.data.user))
+      toast.success('Welcome back! 🎉')
       navigate('/')
+
     } catch (err) {
       setError('Invalid email or password')
+toast.error('Invalid email or password!')
+
     }
   }
 
@@ -26,7 +32,8 @@ export default function Login() {
       <div style={{ width: '100%', maxWidth: 420 }}>
 
         {/* Logo */}
-        <div onClick={() => navigate('/')} style={{ textAlign: 'center', marginBottom: 32, cursor: 'pointer' }}>
+        <div onClick={() => navigate('/')}
+ style={{ textAlign: 'center', marginBottom: 32, cursor: 'pointer' }}>
           <div style={{ width: 52, height: 52, borderRadius: 16, background: 'linear-gradient(135deg, #8B6914, #C9A84C)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, margin: '0 auto 12px' }}>🎓</div>
           <span style={{ fontSize: 22, fontWeight: 700, color: '#C45C00' }}>CampusJugaad</span>
         </div>
