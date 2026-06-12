@@ -1,22 +1,10 @@
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  requireTLS: true,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  },
-  tls: {
-    rejectUnauthorized: false
-  }
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const sendOTP = async (email, otp) => {
-  const mailOptions = {
-    from: `"CampusJugaad" <${process.env.EMAIL_USER}>`,
+  await resend.emails.send({
+    from: 'CampusJugaad <onboarding@resend.dev>',
     to: email,
     subject: 'Your CampusJugaad Verification Code',
     html: `
@@ -37,9 +25,7 @@ const sendOTP = async (email, otp) => {
         <p style="text-align: center; color: #8A6A50; font-size: 12px; margin-top: 24px;">© 2026 CampusJugaad. Built for students, by students.</p>
       </div>
     `
-  };
-
-  await transporter.sendMail(mailOptions);
+  });
 };
 
 module.exports = { sendOTP };
