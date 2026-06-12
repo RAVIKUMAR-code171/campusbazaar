@@ -152,7 +152,7 @@ export default function Chat() {
       </div>
 
       {/* Input */}
-      <div style={{ background: '#fff', borderTop: '1px solid #ede9ff', padding: '16px 24px', display: 'flex', gap: 12, maxWidth: 700, width: '100%', margin: '0 auto', boxSizing: 'border-box' }}>
+      <div style={{ background: '#fff', borderTop: '1px solid #ede9ff', padding: '16px 24px', display: 'flex', gap: 12, width: '100%', boxSizing: 'border-box' }}>
         <input value={newMessage} onChange={e => setNewMessage(e.target.value)} onKeyPress={handleKeyPress}
           placeholder="Type a message..."
           style={{ flex: 1, border: '1.5px solid #d4ceff', borderRadius: 14, padding: '12px 16px', fontFamily: 'Sora, sans-serif', fontSize: 14, outline: 'none' }} />

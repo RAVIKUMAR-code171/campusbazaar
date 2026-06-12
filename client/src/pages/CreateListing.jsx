@@ -96,7 +96,7 @@ export default function CreateListing() {
             style={{ width: '100%', border: '1.5px solid #d4ceff', borderRadius: 12, padding: '12px 16px', fontFamily: 'Sora, sans-serif', fontSize: 14, outline: 'none', resize: 'vertical', boxSizing: 'border-box' }} />
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginBottom: 24 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 12, marginBottom: 24 }}>
           {[
             { label: 'Type', name: 'type', options: ['sell', 'rent'] },
             { label: 'Category', name: 'category', options: ['Books', 'Electronics', 'Furniture', 'Transport', 'Stationery', 'Notes', 'Hostel Items', 'Calculators'] },
