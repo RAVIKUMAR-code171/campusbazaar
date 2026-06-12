@@ -44,7 +44,7 @@ export default function Login() {
 
           <div style={{ marginBottom: 16 }}>
             <label style={{ fontSize: 13, fontWeight: 600, color: '#8A6A50', display: 'block', marginBottom: 6 }}>Email</label>
-            <input value={email} onChange={e => setEmail(e.target.value)} placeholder="aryan@dtu.ac.in"
+            <input value={email} onChange={e => setEmail(e.target.value)} placeholder="yourname@college.ac.in"
               style={{ width: '100%', border: '1.5px solid #E8DCC8', borderRadius: 12, padding: '12px 16px', fontFamily: 'Sora, sans-serif', fontSize: 14, outline: 'none', boxSizing: 'border-box', background: '#F5ECD8', color: '#1A0C00' }} />
           </div>
 

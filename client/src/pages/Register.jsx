@@ -102,7 +102,13 @@ export default function Register() {
                   <option>GGSIPU</option>
                   <option>Jamia Millia</option>
                   <option>GL Bajaj Institute</option>
-                  <option>Other</option>
+                  <option>BITS Pilani</option>
+<option>NIT Trichy</option>
+<option>VIT Vellore</option>
+<option>Amity University</option>
+<option>Bennett University</option>
+<option>Sharda University</option>
+<option>Other</option>
                 </select>
               </div>
 
