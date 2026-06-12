@@ -67,14 +67,21 @@ useEffect(() => {
         .hov-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
         .hov-btn:hover { opacity: 0.85; transform: translateY(-1px); }
         .cat-btn:hover { background: ${C.primary} !important; color: ${C.bg} !important; }
-        @media (max-width: 768px) {
-          .hero-title { font-size: 32px !important; }
-          .grid-3 { grid-template-columns: 1fr 1fr !important; }
-          .hide-mobile { display: none !important; }
-          .hero-pad { padding: 48px 20px !important; }
-          .nav-pad { padding: 0 20px !important; }
-          .section-pad { padding: 0 20px !important; }
-        }
+       @media (max-width: 768px) {
+  .hero-title { font-size: 32px !important; }
+  .grid-3 { grid-template-columns: 1fr 1fr !important; }
+  .hide-mobile { display: none !important; }
+  .hero-pad { padding: 48px 20px !important; }
+  .nav-pad { padding: 0 20px !important; }
+  .section-pad { padding: 0 20px !important; }
+  .mobile-menu { display: flex !important; }
+  .nav-buttons { display: none !important; }
+  .hamburger { display: flex !important; }
+}
+@media (max-width: 480px) {
+  .grid-3 { grid-template-columns: 1fr !important; }
+  .hero-title { font-size: 26px !important; }
+}
         @media (max-width: 480px) {
           .grid-3 { grid-template-columns: 1fr !important; }
         }
@@ -98,6 +105,12 @@ useEffect(() => {
             ))}
           </div>
           <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+  {/* Hamburger button - only shows on mobile */}
+  <button className="hamburger"
+    onClick={() => setMenuOpen(!menuOpen)}
+    style={{ display: 'none', background: 'none', border: 'none', fontSize: 24, cursor: 'pointer', color: C.text }}>
+    {menuOpen ? '✕' : '☰'}
+  </button>
             {token ? (
               <>
                 <button onClick={() => navigate('/create')} className="hov-btn"
@@ -132,7 +145,37 @@ useEffect(() => {
           </div>
         </div>
       </nav>
+      
+      {/* Mobile Menu Dropdown */}
+{menuOpen && (
+  <div style={{ background: C.surface, borderBottom: `1px solid ${C.border}`, padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+    <span onClick={() => { navigate('/'); setMenuOpen(false) }}
+      style={{ fontSize: 15, fontWeight: 500, color: C.text, cursor: 'pointer', padding: '8px 0' }}>🏠 Home</span>
+    <span onClick={() => { document.getElementById('listings').scrollIntoView({ behavior: 'smooth' }); setMenuOpen(false) }}
+      style={{ fontSize: 15, fontWeight: 500, color: C.text, cursor: 'pointer', padding: '8px 0' }}>🔍 Browse</span>
+    <span onClick={() => { navigate('/requests'); setMenuOpen(false) }}
+      style={{ fontSize: 15, fontWeight: 500, color: C.text, cursor: 'pointer', padding: '8px 0' }}>📋 Requests</span>
+    {token ? (
+      <>
+        <span onClick={() => { navigate('/create'); setMenuOpen(false) }}
+          style={{ fontSize: 15, fontWeight: 500, color: C.primary, cursor: 'pointer', padding: '8px 0' }}>+ Post Listing</span>
+        <span onClick={() => { navigate('/profile'); setMenuOpen(false) }}
+          style={{ fontSize: 15, fontWeight: 500, color: C.text, cursor: 'pointer', padding: '8px 0' }}>👤 Profile</span>
+        <span onClick={() => { logout(); setMenuOpen(false) }}
+          style={{ fontSize: 15, fontWeight: 500, color: 'red', cursor: 'pointer', padding: '8px 0' }}>🚪 Logout</span>
+      </>
+    ) : (
+      <>
+        <span onClick={() => { navigate('/login'); setMenuOpen(false) }}
+          style={{ fontSize: 15, fontWeight: 500, color: C.text, cursor: 'pointer', padding: '8px 0' }}>🔑 Login</span>
+        <span onClick={() => { navigate('/register'); setMenuOpen(false) }}
+          style={{ fontSize: 15, fontWeight: 500, color: C.primary, cursor: 'pointer', padding: '8px 0' }}>✨ Sign Up</span>
+      </>
+    )}
+  </div>
+)}
 
+{/* Hero */}
       {/* Hero */}
       <div className="hero-pad" style={{ background: `linear-gradient(135deg, #FFE8C8 0%, #FFFAF4 50%, #FFF4E0 100%)`, padding: '80px 32px', textAlign: 'center', borderBottom: `1px solid ${C.border}` }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(217,119,6,0.15)', border: `1px solid rgba(217,119,6,0.3)`, borderRadius: 999, padding: '6px 16px', marginBottom: 28 }}>
@@ -214,7 +257,7 @@ useEffect(() => {
 
       {/* Borrow Section */}
       <div style={{ maxWidth: 1200, margin: '64px auto', padding: '0 32px' }}>
-        <div style={{ background: `linear-gradient(135deg, #2d1a0a, #3d2410)`, borderRadius: 24, padding: '48px', border: `1px solid ${C.border}`, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32, alignItems: 'center' }}>
+        <div style={{ background: `linear-gradient(135deg, #2d1a0a, #3d2410)`, borderRadius: 24, padding: '48px', border: `1px solid ${C.border}`, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 32, alignItems: 'center' }}>
           <div>
             <div style={{ display: 'inline-block', background: 'rgba(217,119,6,0.15)', color: C.primary, borderRadius: 999, padding: '6px 16px', fontSize: 12, fontWeight: 700, marginBottom: 16 }}>BORROW ECONOMY</div>
             <h2 style={{ fontSize: 32, fontWeight: 800, color: C.light, marginBottom: 16 }}>Rent Per Day,<br />Save Big</h2>
@@ -320,7 +363,7 @@ useEffect(() => {
 
       {/* Footer */}
       <footer style={{ background: '#140a02', padding: '40px 32px', borderTop: `1px solid ${C.border}` }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 24 }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 24, flexDirection: 'column' }}>
           <div>
             <div style={{ fontSize: 20, fontWeight: 800, color: C.light, marginBottom: 8 }}>🎓 CampusJugaad</div>
             <p style={{ color: C.muted, fontSize: 14, maxWidth: 280, lineHeight: 1.6 }}>The exclusive marketplace for verified college students. Zero commission. Pure community.</p>
