@@ -29,6 +29,9 @@ export default function Home() {
   const [search, setSearch] = useState('')
   const [type, setType] = useState('all')
   const [category, setCategory] = useState('All')
+const [minPrice, setMinPrice] = useState('')
+const [maxPrice, setMaxPrice] = useState('')
+const [collegeFilter, setCollegeFilter] = useState('All')
   const [menuOpen, setMenuOpen] = useState(false)
   const navigate = useNavigate()
   const token = localStorage.getItem('token')
@@ -58,7 +61,10 @@ useEffect(() => {
     const matchType = type === 'all' || l.type === type
     const matchCat = category === 'All' || l.category === category
     const matchSearch = l.title.toLowerCase().includes(search.toLowerCase())
-    return matchType && matchCat && matchSearch
+    const matchMin = minPrice === '' || l.price >= Number(minPrice)
+    const matchMax = maxPrice === '' || l.price <= Number(maxPrice)
+    const matchCollege = collegeFilter === 'All' || l.college === collegeFilter
+    return matchType && matchCat && matchSearch && matchMin && matchMax && matchCollege
   })
 
   return (
@@ -296,7 +302,39 @@ if (n === 'Categories') navigate('/categories')
             <span style={{ fontSize: 16, fontWeight: 500, color: C.muted, marginLeft: 12 }}>{filtered.length} items</span>
           </h2>
         </div>
-
+        
+        {/* Price and College Filters */}
+        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 16, alignItems: 'center' }}>
+          <input value={minPrice} onChange={e => setMinPrice(e.target.value)}
+            placeholder="Min ₹"
+            type="number"
+            style={{ width: 100, padding: '8px 12px', borderRadius: 10, border: `1.5px solid ${C.border}`, fontFamily: 'Sora,sans-serif', fontSize: 13, outline: 'none', background: C.surface }} />
+          <input value={maxPrice} onChange={e => setMaxPrice(e.target.value)}
+            placeholder="Max ₹"
+            type="number"
+            style={{ width: 100, padding: '8px 12px', borderRadius: 10, border: `1.5px solid ${C.border}`, fontFamily: 'Sora,sans-serif', fontSize: 13, outline: 'none', background: C.surface }} />
+          <select value={collegeFilter} onChange={e => setCollegeFilter(e.target.value)}
+            style={{ padding: '8px 12px', borderRadius: 10, border: `1.5px solid ${C.border}`, fontFamily: 'Sora,sans-serif', fontSize: 13, outline: 'none', background: C.surface, color: C.text }}>
+            <option value="All">All Colleges</option>
+            <option>IIT Delhi</option>
+            <option>DTU</option>
+            <option>NSUT</option>
+            <option>GGSIPU</option>
+            <option>Jamia Millia</option>
+            <option>GL Bajaj Institute</option>
+            <option>BITS Pilani</option>
+            <option>NIT Trichy</option>
+            <option>VIT Vellore</option>
+            <option>Amity University</option>
+            <option>Bennett University</option>
+            <option>Sharda University</option>
+          </select>
+          <button onClick={() => { setMinPrice(''); setMaxPrice(''); setCollegeFilter('All') }}
+            style={{ padding: '8px 16px', borderRadius: 10, border: `1.5px solid ${C.border}`, background: 'transparent', fontFamily: 'Sora,sans-serif', fontSize: 13, cursor: 'pointer', color: C.muted }}>
+            Clear Filters
+          </button>
+        </div>
+        
         {/* Filters */}
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 28 }}>
           {[['all', 'All Items'], ['sell', '🛒 Buy'], ['rent', '🔑 Borrow']].map(([val, label]) => (

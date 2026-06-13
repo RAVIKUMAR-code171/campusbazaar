@@ -51,7 +51,7 @@ export default function ListingDetail() {
         key: 'rzp_test_SvnSryp6Akgcwx',
         amount: order.amount,
         currency: 'INR',
-        name: 'CampusBazaar',
+        name: 'CampusJugaad',
         description: listing.title,
         order_id: order.id,
         handler: async (response) => {
@@ -163,7 +163,7 @@ export default function ListingDetail() {
 
       {/* Navbar */}
       <nav style={{ background: '#fff', borderBottom: '1px solid #ede9ff', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 64, position: 'sticky', top: 0, zIndex: 50 }}>
-        <span onClick={() => navigate('/')} style={{ fontSize: 22, fontWeight: 800, background: 'linear-gradient(135deg, #5a3ff5, #9b5de5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', cursor: 'pointer' }}>🎓 CampusBazaar</span>
+        <span onClick={() => navigate('/')} style={{ fontSize: 22, fontWeight: 800, background: 'linear-gradient(135deg, #5a3ff5, #9b5de5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', cursor: 'pointer' }}>🎓 CampusJugaad</span>
         <button onClick={() => navigate('/')} style={{ background: 'transparent', border: '1.5px solid #d4ceff', borderRadius: 12, padding: '8px 20px', fontFamily: 'Sora, sans-serif', fontWeight: 500, cursor: 'pointer', color: '#5a4fa3' }}>← Back</button>
       </nav>
 
@@ -221,8 +221,16 @@ export default function ListingDetail() {
 
            <button onClick={() => token ? navigate(`/chat/${listing._id}/${listing.seller._id}`) : navigate('/login')}
             style={{ width: '100%', background: 'linear-gradient(135deg, #5a3ff5, #9b5de5)', color: '#fff', border: 'none', borderRadius: 14, padding: '14px', fontSize: 16, fontFamily: 'Sora, sans-serif', fontWeight: 600, cursor: 'pointer', marginBottom: 12 }}>
-            💬 Contact Seller
+            💬 Chat with Seller
             </button>
+
+            {token && listing.seller?.email && (
+              <div style={{ background: '#FFFAF4', border: '1.5px solid #FFCF90', borderRadius: 14, padding: '16px 20px', marginBottom: 12 }}>
+                <p style={{ fontSize: 13, color: '#8A6A50', marginBottom: 8, fontWeight: 600 }}>📞 Contact Seller Directly</p>
+                <p style={{ fontSize: 14, color: '#1A0C00' }}>📧 {listing.seller.email}</p>
+                {listing.seller.phone && <p style={{ fontSize: 14, color: '#1A0C00', marginTop: 6 }}>📱 {listing.seller.phone}</p>}
+              </div>
+            )}
             <button onClick={handleWishlist}
               style={{ width: '100%', background: wishlisted ? '#fff0f0' : 'transparent', border: `1.5px solid ${wishlisted ? '#ffb3b3' : '#d4ceff'}`, borderRadius: 14, padding: '14px', fontSize: 16, fontFamily: 'Sora, sans-serif', fontWeight: 500, cursor: 'pointer', color: wishlisted ? '#e53935' : '#5a4fa3' }}>
               {wishlisted ? '❤️ Saved!' : '🤍 Save to Wishlist'}
