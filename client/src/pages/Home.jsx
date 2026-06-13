@@ -266,10 +266,10 @@ if (n === 'Categories') navigate('/categories')
 
       {/* Borrow Section */}
       <div style={{ maxWidth: 1200, margin: '64px auto', padding: '0 32px' }}>
-        <div style={{ background: `linear-gradient(135deg, #2d1a0a, #3d2410)`, borderRadius: 24, padding: '48px', border: `1px solid ${C.border}`, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 32, alignItems: 'center' }}>
+        <div style={{ background: `linear-gradient(135deg, #f5ecd8, #edd9b8)`, borderRadius: 24, padding: '48px', border: `1px solid ${C.border}`, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 32, alignItems: 'center' }}>
           <div>
             <div style={{ display: 'inline-block', background: 'rgba(217,119,6,0.15)', color: C.primary, borderRadius: 999, padding: '6px 16px', fontSize: 12, fontWeight: 700, marginBottom: 16 }}>BORROW ECONOMY</div>
-            <h2 style={{ fontSize: 32, fontWeight: 800, color: C.light, marginBottom: 16 }}>Rent Per Day,<br />Save Big</h2>
+            <h2 style={{ fontSize: 32, fontWeight: 800, color: '#7B5A2D', marginBottom: 16 }}>Rent Per Day,<br />Save Big</h2>
             <p style={{ color: C.muted, fontSize: 15, lineHeight: 1.7, marginBottom: 24 }}>Need a calculator for one exam? Or a cycle for a week? Borrow from campus mates at affordable daily rates.</p>
             {['Save Money', 'Eco-friendly sharing', 'Community trust'].map(item => (
               <div key={item} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
