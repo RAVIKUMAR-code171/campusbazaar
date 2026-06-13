@@ -403,10 +403,10 @@ if (n === 'Categories') navigate('/categories')
       </div>
 
       {/* Footer */}
-      <footer style={{ background: '#140a02', padding: '40px 32px', borderTop: `1px solid ${C.border}` }}>
+      <footer style={{ background: '#f5ecd8', padding: '40px 32px', borderTop: `1px solid ${C.border}` }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 24, flexDirection: 'column' }}>
           <div>
-            <div style={{ fontSize: 20, fontWeight: 800, color: C.light, marginBottom: 8 }}>🎓 CampusJugaad</div>
+            <div style={{ fontSize: 20, fontWeight: 800, color: '#7B5A2D', marginBottom: 8 }}>🎓 CampusJugaad</div>
             <p style={{ color: C.muted, fontSize: 14, maxWidth: 280, lineHeight: 1.6 }}>The exclusive marketplace for verified college students. Zero commission. Pure community.</p>
           </div>
           <div style={{ display: 'flex', gap: 48, flexWrap: 'wrap' }}>
