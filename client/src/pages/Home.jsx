@@ -429,7 +429,13 @@ if (n === 'Categories') navigate('/categories')
         </button>
       </div>
 
-      {/* Footer */}
+      {/* Back to Top Button */}
+<div onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+  style={{ position: 'fixed', bottom: 32, right: 32, background: '#7B5A2D', color: '#fff', borderRadius: '50%', width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, cursor: 'pointer', boxShadow: '0 4px 16px rgba(0,0,0,0.2)', zIndex: 999 }}>
+  ↑
+</div>
+
+{/* Footer */}
       <footer style={{ background: '#f5ecd8', padding: '40px 32px', borderTop: `1px solid ${C.border}` }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 24, flexDirection: 'column' }}>
           <div>
