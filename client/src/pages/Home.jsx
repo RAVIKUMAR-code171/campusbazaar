@@ -9,7 +9,7 @@ const C = {
   border: '#FFCF90',
   navBg: '#ffffff',
   heroBg: '#FFFAF4',
-  primary: '#FF9B3A',
+  primary: '#7B5A2D',
   light: '#1A0C00',
   text: '#1A0C00',
   muted: '#8A6A50',

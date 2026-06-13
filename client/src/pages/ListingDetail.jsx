@@ -139,7 +139,7 @@ export default function ListingDetail() {
 
   if (loading) return (
     <div style={{ fontFamily: 'Sora, sans-serif', minHeight: '100vh', background: '#f7f5ff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <p style={{ fontSize: 18, color: '#5a4fa3' }}>Loading...</p>
+      <p style={{ fontSize: 18, color: '#7B5A2D' }}>Loading...</p>
     </div>
   )
 
@@ -158,13 +158,13 @@ export default function ListingDetail() {
     : null
 
   return (
-    <div style={{ fontFamily: 'Sora, sans-serif', background: '#f7f5ff', minHeight: '100vh' }}>
+    <div style={{ fontFamily: 'Sora, sans-serif', background: '#FFFAF4', minHeight: '100vh' }}>
       <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
       {/* Navbar */}
-      <nav style={{ background: '#fff', borderBottom: '1px solid #ede9ff', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 64, position: 'sticky', top: 0, zIndex: 50 }}>
-        <span onClick={() => navigate('/')} style={{ fontSize: 22, fontWeight: 800, background: 'linear-gradient(135deg, #5a3ff5, #9b5de5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', cursor: 'pointer' }}>🎓 CampusJugaad</span>
-        <button onClick={() => navigate('/')} style={{ background: 'transparent', border: '1.5px solid #d4ceff', borderRadius: 12, padding: '8px 20px', fontFamily: 'Sora, sans-serif', fontWeight: 500, cursor: 'pointer', color: '#5a4fa3' }}>← Back</button>
+      <nav style={{ background: '#fff', borderBottom: '1px solid #FFCF90', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 64, position: 'sticky', top: 0, zIndex: 50 }}>
+        <span onClick={() => navigate('/')} style={{ fontSize: 22, fontWeight: 800, color: '#7B5A2D', cursor: 'pointer' }}>🎓 CampusJugaad</span>
+        <button onClick={() => navigate('/')} style={{ background: 'transparent', border: '1.5px solid #FFCF90', borderRadius: 12, padding: '8px 20px', fontFamily: 'Sora, sans-serif', fontWeight: 500, cursor: 'pointer', color: '#8A6A50' }}>← Back</button>
       </nav>
 
       <div style={{ maxWidth: 900, margin: '40px auto', padding: '0 24px' }}>
@@ -185,7 +185,7 @@ export default function ListingDetail() {
               <span style={{ background: listing.type === 'rent' ? '#fff3e0' : '#f0eeff', color: listing.type === 'rent' ? '#e65100' : '#5a3ff5', borderRadius: 999, padding: '4px 14px', fontSize: 12, fontWeight: 700, border: `1px solid ${listing.type === 'rent' ? '#ffcc80' : '#d4ceff'}` }}>
                 {listing.type === 'rent' ? '🔑 FOR RENT' : '🛒 FOR SALE'}
               </span>
-              <span style={{ background: '#f0eeff', color: '#5a3ff5', borderRadius: 999, padding: '4px 14px', fontSize: 12, fontWeight: 600 }}>{listing.category}</span>
+              <span style={{ background: '#FFF0D0', color: '#7B5A2D', borderRadius: 999, padding: '4px 14px', fontSize: 12, fontWeight: 600 }}>{listing.category}</span>
             </div>
 
             <h1 style={{ fontSize: 28, fontWeight: 800, color: '#1a1035', marginBottom: 8 }}>{listing.title}</h1>
@@ -198,10 +198,10 @@ export default function ListingDetail() {
               </div>
             )}
 
-            <p style={{ fontSize: 36, fontWeight: 800, color: '#5a3ff5', marginBottom: 16 }}>₹{listing.price}{listing.type === 'rent' ? '/day' : ''}</p>
+            <p style={{ fontSize: 36, fontWeight: 800, color: '#7B5A2D', marginBottom: 16 }}>₹{listing.price}{listing.type === 'rent' ? '/day' : ''}</p>
             <p style={{ fontSize: 15, color: '#555', lineHeight: 1.7, marginBottom: 24 }}>{listing.description}</p>
 
-            <div style={{ background: '#f7f5ff', borderRadius: 16, padding: 20, marginBottom: 24 }}>
+            <div style={{ background: '#FFFAF4', borderRadius: 16, padding: 20, marginBottom: 24 }}>
               {[
                 ['Condition', listing.condition],
                 ['College', listing.college],
@@ -213,14 +213,14 @@ export default function ListingDetail() {
                   <span style={{ color: '#1a1035', fontSize: 14, fontWeight: 600 }}>{val}</span>
                 </div>
               ))}
-            </div>
+            </div>s
             <button onClick={handlePayment} disabled={paying}
              style={{ width: '100%', background: 'linear-gradient(135deg, #f59e0b, #d97706)', color: '#fff', border: 'none', borderRadius: 14, padding: '14px', fontSize: 16, fontFamily: 'Sora, sans-serif', fontWeight: 600, cursor: 'pointer', marginBottom: 12 }}>
              {paying ? '⏳ Processing...' : '💳 Buy Now — ₹' + listing.price}
             </button>
 
            <button onClick={() => token ? navigate(`/chat/${listing._id}/${listing.seller._id}`) : navigate('/login')}
-            style={{ width: '100%', background: 'linear-gradient(135deg, #5a3ff5, #9b5de5)', color: '#fff', border: 'none', borderRadius: 14, padding: '14px', fontSize: 16, fontFamily: 'Sora, sans-serif', fontWeight: 600, cursor: 'pointer', marginBottom: 12 }}>
+            style={{ width: '100%', background: 'linear-gradient(135deg, #7B5A2D, #9C6B3C)', color: '#fff', border: 'none', borderRadius: 14, padding: '14px', fontSize: 16, fontFamily: 'Sora, sans-serif', fontWeight: 600, cursor: 'pointer', marginBottom: 12 }}>
             💬 Chat with Seller
             </button>
 
@@ -239,12 +239,12 @@ export default function ListingDetail() {
         </div>
 
         {/* Reviews Section */}
-        <div style={{ background: '#fff', borderRadius: 24, padding: 32, border: '1.5px solid #ede9ff', marginBottom: 40 }}>
+        <div style={{ background: '#fff', borderRadius: 24, padding: 32, border: '1.5px solid #FFCF90', marginBottom: 40 }}>
           <h2 style={{ fontSize: 24, fontWeight: 800, color: '#1a1035', marginBottom: 24 }}>⭐ Reviews {reviews.length > 0 && `(${reviews.length})`}</h2>
 
           {/* Write Review */}
           {token && user?.id !== listing.seller?._id && (
-            <div style={{ background: '#f7f5ff', borderRadius: 16, padding: 24, marginBottom: 28 }}>
+            <div style={{ background: '#FFFAF4', borderRadius: 16, padding: 24, marginBottom: 28 }}>
               <h3 style={{ fontSize: 16, fontWeight: 700, color: '#1a1035', marginBottom: 16 }}>Write a Review</h3>
 
               {/* Star Rating */}
@@ -263,7 +263,7 @@ export default function ListingDetail() {
               {reviewError && <p style={{ color: 'red', fontSize: 13, marginBottom: 12 }}>{reviewError}</p>}
 
               <button onClick={submitReview} disabled={submitting || !comment}
-                style={{ background: 'linear-gradient(135deg, #5a3ff5, #9b5de5)', color: '#fff', border: 'none', borderRadius: 12, padding: '12px 28px', fontFamily: 'Sora, sans-serif', fontWeight: 600, cursor: 'pointer', fontSize: 14 }}>
+                style={{ background: 'linear-gradient(135deg, #7B5A2D, #9C6B3C)', color: '#fff', border: 'none', borderRadius: 12, padding: '12px 28px', fontFamily: 'Sora, sans-serif', fontWeight: 600, cursor: 'pointer', fontSize: 14 }}>
                 {submitting ? 'Submitting...' : 'Submit Review'}
               </button>
             </div>
