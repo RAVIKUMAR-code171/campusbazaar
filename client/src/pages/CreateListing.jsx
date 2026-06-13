@@ -56,7 +56,7 @@ export default function CreateListing() {
   }
 
   return (
-    <div style={{ fontFamily: 'Sora, sans-serif', minHeight: '100vh', background: '#f7f5ff', padding: '40px 24px' }}>
+    <div style={{ fontFamily: 'Sora, sans-serif', minHeight: '100vh', background: '#f5ecd8', padding: '40px 24px' }}>
       <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
       <div style={{ maxWidth: 540, margin: '0 auto', background: '#fff', borderRadius: 24, padding: '40px' }}>
         <h2 style={{ fontSize: 28, fontWeight: 800, color: '#1a1035', marginBottom: 8 }}>Post a Listing 📦</h2>
@@ -68,7 +68,7 @@ export default function CreateListing() {
         <div style={{ marginBottom: 24 }}>
           <label style={{ fontSize: 13, fontWeight: 600, color: '#5a4fa3', display: 'block', marginBottom: 6 }}>Photo of Item</label>
           <div onClick={() => document.getElementById('imageInput').click()}
-            style={{ border: '2px dashed #d4ceff', borderRadius: 16, padding: '24px', textAlign: 'center', cursor: 'pointer', background: '#f7f5ff' }}>
+            style={{ border: '2px dashed #FFCF90', borderRadius: 16, padding: '24px', textAlign: 'center', cursor: 'pointer', background: '#F5ECD8' }}>
             {preview ? (
               <img src={preview} alt="preview" style={{ maxHeight: 200, borderRadius: 12, maxWidth: '100%' }} />
             ) : (

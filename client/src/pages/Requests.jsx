@@ -60,7 +60,7 @@ export default function Requests() {
   }
 
   const C = {
-    bg: '#f8f9ff', surface: '#ffffff', border: '#e2e8f0',
+    bg: '#f5ecd8', surface: '#ffffff', border: '#e2e8f0',
     navBg: '#0f1c3f', primary: '#7b5a2d', light: '#ffffff',
     text: '#1e293b', muted: '#64748b', card: '#ffffff'
   }

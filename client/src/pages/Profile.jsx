@@ -40,13 +40,13 @@ export default function Profile() {
   }
 
   if (loading) return (
-    <div style={{ fontFamily: 'Sora, sans-serif', minHeight: '100vh', background: '#f7f5ff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div style={{ fontFamily: 'Sora, sans-serif', minHeight: '100vh', background: '#f5ecd8', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <p style={{ fontSize: 18, color: '#5a4fa3' }}>Loading...</p>
     </div>
   )
 
   return (
-    <div style={{ fontFamily: 'Sora, sans-serif', background: '#f7f5ff', minHeight: '100vh' }}>
+    <div style={{ fontFamily: 'Sora, sans-serif', background: '#f5ecd8', minHeight: '100vh' }}>
       <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
       {/* Navbar */}
@@ -77,7 +77,7 @@ export default function Profile() {
               ['❤️', '—', 'Wishlist'],
               ['⭐', '—', 'Reviews'],
             ].map(([icon, val, label]) => (
-              <div key={label} style={{ background: '#f7f5ff', borderRadius: 16, padding: '16px', textAlign: 'center' }}>
+              <div key={label} style={{ background: '#f5ecd8', borderRadius: 16, padding: '16px', textAlign: 'center' }}>
                 <div style={{ fontSize: 24, marginBottom: 4 }}>{icon}</div>
                 <div style={{ fontSize: 24, fontWeight: 800, color: '#5a3ff5' }}>{val}</div>
                 <div style={{ fontSize: 13, color: '#7c6fb8' }}>{label}</div>
@@ -118,7 +118,7 @@ export default function Profile() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: 16 }}>
               {listings.map(item => (
                 <div key={item._id} onClick={() => navigate(`/listing/${item._id}`)}
-                  style={{ background: '#f7f5ff', borderRadius: 16, overflow: 'hidden', cursor: 'pointer', border: '1.5px solid #ede9ff' }}>
+                  style={{ background: '#f5ecd8', borderRadius: 16, overflow: 'hidden', cursor: 'pointer', border: '1.5px solid #ede9ff' }}>
                   <div style={{ background: item.type === 'rent' ? '#fff3e0' : '#f0eeff', height: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 40, overflow: 'hidden' }}>
                     {item.image ? (
                       <img src={item.image} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
