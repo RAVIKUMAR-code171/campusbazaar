@@ -33,6 +33,9 @@ const [minPrice, setMinPrice] = useState('')
 const [maxPrice, setMaxPrice] = useState('')
 const [collegeFilter, setCollegeFilter] = useState('All')
   const [menuOpen, setMenuOpen] = useState(false)
+const [notifications, setNotifications] = useState([])
+const [unreadCount, setUnreadCount] = useState(0)
+const [showNotifications, setShowNotifications] = useState(false)
   const navigate = useNavigate()
   const token = localStorage.getItem('token')
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user') || 'null'))
@@ -41,7 +44,19 @@ useEffect(() => {
   setUser(JSON.parse(localStorage.getItem('user') || 'null'))
 }, [])
 
-  useEffect(() => { fetchListings() }, [])
+  useEffect(() => {
+    fetchListings()
+    if (token) fetchNotifications()
+  }, [])
+
+  const fetchNotifications = async () => {
+    try {
+      const res = await axios.get('https://campusjugaad-server.onrender.com/api/notifications/count', {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      setUnreadCount(res.data.count)
+    } catch (err) { console.log(err) }
+  }
 
   const fetchListings = async () => {
     try {
@@ -114,7 +129,19 @@ if (n === 'Categories') navigate('/categories')
             ))}
           </div>
           <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-  {/* Hamburger button - only shows on mobile */}
+  {/* Bell notification icon */}
+          {token && (
+            <div style={{ position: 'relative', cursor: 'pointer' }} onClick={() => navigate('/requests')}>
+              <span style={{ fontSize: 22 }}>🔔</span>
+              {unreadCount > 0 && (
+                <span style={{ position: 'absolute', top: -6, right: -6, background: 'red', color: '#fff', borderRadius: '50%', width: 18, height: 18, fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  {unreadCount}
+                </span>
+              )}
+            </div>
+          )}
+
+          {/* Hamburger button - only shows on mobile */}
   <button className="hamburger"
     onClick={() => setMenuOpen(!menuOpen)}
     style={{ display: 'none', background: 'none', border: 'none', fontSize: 24, cursor: 'pointer', color: C.text }}>
