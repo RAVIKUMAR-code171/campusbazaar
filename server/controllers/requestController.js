@@ -1,4 +1,5 @@
 const Request = require('../models/Request');
+const Notification = require('../models/Notification');
 
 // Get all requests
 exports.getRequests = async (req, res) => {
@@ -43,7 +44,17 @@ exports.respondToRequest = async (req, res) => {
       user: req.user.id,
       message: req.body.message
     });
-    await request.save();
+await request.save();
+
+    // Send notification to request owner
+    await Notification.create({
+      recipient: request.postedBy,
+      sender: req.user.id,
+      type: 'request_response',
+      message: `Someone responded to your request: "${request.title}"`,
+      link: '/requests'
+    });
+
     res.status(200).json(request);
   } catch (error) {
     res.status(500).json({ message: error.message });
