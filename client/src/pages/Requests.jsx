@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import toast from 'react-hot-toast'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
@@ -30,7 +31,8 @@ export default function Requests() {
       setShowForm(false)
       setForm({ title: '', description: '', category: 'Books', college: '', budget: '' })
       fetchRequests()
-    } catch (err) { alert('Error posting request') }
+      toast.success('Request posted successfully! 📢')
+    } catch (err) { toast.error('Error posting request!') }
   }
 
   const handleRespond = async (id) => {
@@ -42,7 +44,8 @@ export default function Requests() {
       setResponding(null)
       setResponseMsg('')
       fetchRequests()
-    } catch (err) { alert('Error responding') }
+      toast.success('Response sent! 💬')
+    } catch (err) { toast.error('Error sending response!') }
   }
 
   const handleDelete = async (id) => {
@@ -52,7 +55,8 @@ export default function Requests() {
         headers: { Authorization: `Bearer ${token}` }
       })
       fetchRequests()
-    } catch (err) { alert('Error deleting') }
+      toast.success('Request deleted!')
+    } catch (err) { toast.error('Error deleting!') }
   }
 
   const C = {
@@ -67,7 +71,7 @@ export default function Requests() {
 
       {/* Navbar */}
       <nav style={{ background: C.navBg, padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 64, position: 'sticky', top: 0, zIndex: 50 }}>
-        <span onClick={() => navigate('/')} style={{ fontSize: 20, fontWeight: 800, color: C.primary, cursor: 'pointer' }}>🎓 CampusBazaar</span>
+        <span onClick={() => navigate('/')} style={{ fontSize: 20, fontWeight: 800, color: C.primary, cursor: 'pointer' }}>🎓 CampusJugaad</span>
         <button onClick={() => navigate('/')}
           style={{ background: 'transparent', border: '1.5px solid rgba(255,255,255,0.2)', borderRadius: 12, padding: '8px 20px', fontFamily: 'Sora,sans-serif', fontWeight: 500, cursor: 'pointer', color: '#fff', fontSize: 14 }}>
           ← Back
