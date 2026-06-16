@@ -10,32 +10,12 @@ export default function CreateListing() {
     if (!form.title) return toast.error('Enter item name first!')
     setAiLoading(true)
     try {
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
+      const response = await fetch('https://campusjugaad-server.onrender.com/api/ai/generate-listing', {
         method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'x-api-key': import.meta.env.VITE_ANTHROPIC_KEY,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true',
-          'x-api-key': 'your-anthropic-api-key',
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true'
-        },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-6',
-          max_tokens: 1000,
-          messages: [{
-            role: 'user',
-            content: `You are helping a student sell an item on CampusJugaad, a student marketplace. 
-Generate a catchy title and detailed description for this item: "${form.title}".
-Respond ONLY in this JSON format with no extra text:
-{"title": "catchy title here", "description": "detailed description here in 2-3 sentences"}`
-          }]
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: form.title })
       })
-      const data = await response.json()
-      const text = data.content[0].text
-      const parsed = JSON.parse(text)
+      const parsed = await response.json()
       setForm(f => ({ ...f, title: parsed.title, description: parsed.description }))
       toast.success('AI generated your listing! ✨')
     } catch (err) {

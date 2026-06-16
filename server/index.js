@@ -100,6 +100,7 @@ app.use('/api/wishlist', require('./routes/wishlist'));
 app.use('/api/messages', require('./routes/messages'));
 app.use('/api/payment', require('./routes/payment'));
 app.use('/api/notifications', require('./routes/notifications'));
+app.use('/api/ai', require('./routes/ai'));
 
 app.get('/', (req, res) => {
   res.send('CampusBazaar Server is Running!');
