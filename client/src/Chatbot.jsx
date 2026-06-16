@@ -30,7 +30,7 @@ export default function Chatbot() {
   }
 
   return (
-    <div style={{ position: 'fixed', bottom: 90, right: 32, zIndex: 1000 }}>
+    <div style={{ position: 'fixed', bottom: 90, right: 32, zIndex: 1000, maxWidth: 320 }}>
       {/* Chat Window */}
       {open && (
         <div style={{ width: 320, height: 420, background: '#fff', borderRadius: 20, boxShadow: '0 8px 32px rgba(0,0,0,0.15)', border: '1.5px solid #FFCF90', display: 'flex', flexDirection: 'column', marginBottom: 12 }}>

@@ -17,24 +17,26 @@ import AuthSuccess from './pages/AuthSuccess'
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/create" element={<CreateListing />} />
-        <Route path="/listing/:id" element={<ListingDetail />} />
-        <Route path="/my-listings" element={<MyListings />} />
-        <Route path="/requests" element={<Requests />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-<Route path="/categories" element={<Categories />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/chat/:listingId/:otherUserId" element={<Chat />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/auth/success" element={<AuthSuccess />} />
-      </Routes>
-    <Chatbot />
-    </BrowserRouter>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/create" element={<CreateListing />} />
+          <Route path="/listing/:id" element={<ListingDetail />} />
+          <Route path="/my-listings" element={<MyListings />} />
+          <Route path="/requests" element={<Requests />} />
+          <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/chat/:listingId/:otherUserId" element={<Chat />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/auth/success" element={<AuthSuccess />} />
+        </Routes>
+      </BrowserRouter>
+      <Chatbot />
+    </div>
   )
 }
 
