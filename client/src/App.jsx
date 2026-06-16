@@ -9,6 +9,7 @@ import MyListings from './pages/MyListings'
 import Requests from './pages/Requests'
 import Wishlist from './pages/Wishlist'
 import Categories from './pages/Categories'
+import Chatbot from './Chatbot'
 import Profile from './pages/Profile'
 import Chat from './pages/Chat'
 import AboutUs from './pages/AboutUs'
@@ -32,6 +33,7 @@ function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/auth/success" element={<AuthSuccess />} />
       </Routes>
+    <Chatbot />
     </BrowserRouter>
   )
 }
