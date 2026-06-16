@@ -1,18 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const axios = require('axios');
 
 router.post('/generate-listing', async (req, res) => {
   try {
     const { title } = req.body;
     
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': process.env.ANTHROPIC_KEY,
-        'anthropic-version': '2023-06-01'
-      },
-      body: JSON.stringify({
+    const { data } = await axios.post('https://api.anthropic.com/v1/messages', {
         model: 'claude-sonnet-4-6',
         max_tokens: 1000,
         messages: [{
@@ -22,10 +16,14 @@ Generate a catchy title and detailed description for this item: "${title}".
 Respond ONLY in this JSON format with no extra text:
 {"title": "catchy title here", "description": "detailed description here in 2-3 sentences"}`
         }]
-      })
-    });
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': process.env.ANTHROPIC_KEY,
+          'anthropic-version': '2023-06-01'
+        }
+      });
 
-    const data = await response.json();
     const text = data.content[0].text;
     const parsed = JSON.parse(text);
     res.json(parsed);
@@ -39,25 +37,22 @@ router.post('/chat', async (req, res) => {
   try {
     const { message } = req.body;
     
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'post',
-      headers: {
-        'content-type': 'application/json',
-        'x-api-key': process.env.anthropic_key,
-        'anthropic-version': '2023-06-01'
-      },
-      body: json.stringify({
+   const { data } = await axios.post('https://api.anthropic.com/v1/messages', {
         model: 'claude-sonnet-4-6',
         max_tokens: 500,
         messages: [{
           role: 'user',
-          content: `you are a helpful assistant for campusjugaad, a student marketplace in india where students can buy, sell and rent items like books, electronics, furniture etc.
-answer this student's question helpfully and concisely in 2-3 sentences max: ${message}`
+          content: `You are a helpful assistant for CampusJugaad, a student marketplace in India where students can buy, sell and rent items like books, electronics, furniture etc.
+Answer this student's question helpfully and concisely in 2-3 sentences max: ${message}`
         }]
-      })
-    });
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': process.env.ANTHROPIC_KEY,
+          'anthropic-version': '2023-06-01'
+        }
+      });
 
-    const data = await response.json();
     const text = data.content[0].text;
     res.json({ reply: text });
   } catch (err) {
