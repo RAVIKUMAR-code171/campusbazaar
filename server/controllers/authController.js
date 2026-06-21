@@ -2,8 +2,6 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const { sendOTP } = require('../utils/email');
-
 // Register
 exports.register = async (req, res) => {
   try {
@@ -17,30 +15,18 @@ exports.register = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    const otpExpiry = new Date(Date.now() + 10 * 60 * 1000);
-
     const user = new User({
       name,
       email,
       password: hashedPassword,
       college,
-      otp,
-      otpExpiry,
-      isVerified: false
+      isVerified: true
     });
 
     await user.save();
-    
-    try {
-      await sendOTP(email, otp);
-    } catch (emailError) {
-      console.error('Email error:', emailError);
-      await User.findByIdAndDelete(user._id);
-      return res.status(500).json({ message: 'Failed to send OTP email. Please try again.' });
-    }
 
-    res.status(201).json({ message: 'OTP sent to your email!', userId: user._id });
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+    res.status(201).json({ token, user: { id: user._id, name: user.name, email: user.email, college: user.college } });
   } catch (error) {
     console.error('Register error:', error);
     res.status(500).json({ message: error.message });
