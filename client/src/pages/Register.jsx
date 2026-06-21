@@ -14,6 +14,17 @@ export default function Register() {
   }
 
   const handleRegister = async () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(form.email)) {
+      setError('Please enter a valid email address')
+      toast.error('Please enter a valid email address')
+      return
+    }
+    if (!form.name || !form.password || !form.college) {
+      setError('Please fill all fields')
+      toast.error('Please fill all fields')
+      return
+    }
     try {
       setLoading(true)
       const res = await axios.post('https://campusjugaad-server.onrender.com/api/auth/register', form)
