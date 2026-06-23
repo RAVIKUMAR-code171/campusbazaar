@@ -380,7 +380,12 @@ if (n === 'Categories') navigate('/categories')
         </div>
 
         {/* Grid */}
-        {filtered.length === 0 ? (
+        {loading ? (
+            <div style={{ textalign: 'center', padding: '48px 0' }}>
+              <div style={{ fontsize: 40, animation: 'spin 1s linear infinite', display: 'inline-block' }}>⏳</div>
+              <p style={{ color: '#8a6a50', margintop: 16, fontsize: 16 }}>loading listings...</p>
+            </div>
+          ) : filtered.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '64px 0', color: C.muted }}>
             <div style={{ fontSize: 48 }}>🔍</div>
             <p style={{ fontSize: 18, fontWeight: 600, marginTop: 16, color: C.light }}>No listings found</p>
